@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<TargetFramework>net45</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Fiddler">
+			<HintPath>..\Dependency\Fiddler.exe</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<PackageReference Include="Jgrass.FiddlerPlugin" Version="1.0.0" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="xcopy $(OutDir) C:\Users\JasonLiu\Documents\Fiddler2\Scripts /S /E /Y" />
+	</Target>
+
+</Project>
