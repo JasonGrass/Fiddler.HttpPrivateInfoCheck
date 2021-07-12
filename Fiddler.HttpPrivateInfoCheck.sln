@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiddler.HttpPrivateInfoCheck", "Fiddler.HttpPrivateInfoCheck\Fiddler.HttpPrivateInfoCheck.csproj", "{4C3668A0-5343-4BA2-98B8-114E7C11F79E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fiddler.HttpPrivateInfoCheck", "Fiddler.HttpPrivateInfoCheck\Fiddler.HttpPrivateInfoCheck.csproj", "{4C3668A0-5343-4BA2-98B8-114E7C11F79E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiddler.Test.WpfUI", "Fiddler.Test.WpfUI\Fiddler.Test.WpfUI.csproj", "{8BF5FC90-E1D9-46B1-80C3-BD0CF2712908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4C3668A0-5343-4BA2-98B8-114E7C11F79E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C3668A0-5343-4BA2-98B8-114E7C11F79E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C3668A0-5343-4BA2-98B8-114E7C11F79E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF5FC90-E1D9-46B1-80C3-BD0CF2712908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF5FC90-E1D9-46B1-80C3-BD0CF2712908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF5FC90-E1D9-46B1-80C3-BD0CF2712908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF5FC90-E1D9-46B1-80C3-BD0CF2712908}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
