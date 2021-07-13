@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Fiddler.HttpPrivateInfoCheck.View"
              xmlns:checkInfoCard="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.CheckInfoCard"
              xmlns:vm="clr-namespace:Fiddler.HttpPrivateInfoCheck.ViewModel"
-             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:configurationsettings="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -19,24 +19,24 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="0 0 10 50">
 
         <TabControl Margin="10" 
                     TabStripPlacement="Bottom"
                     Style="{StaticResource TabControlInLine}">
 
             <TabItem Header="数据展示">
-
-                <hc:WaterfallPanel 
-                    x:Name="HttpCheckInfosWaterfallPanel"
-                    Groups="1" 
-                    hc:PanelElement.FluidMoveBehavior="{StaticResource BehaviorXY200}">
-                </hc:WaterfallPanel>
-
+                <hc:ScrollViewer>
+                    <hc:WaterfallPanel 
+                        x:Name="HttpCheckInfosWaterfallPanel"
+                        Groups="1"
+                        hc:PanelElement.FluidMoveBehavior="{StaticResource BehaviorXY400}">
+                    </hc:WaterfallPanel>
+                </hc:ScrollViewer>
             </TabItem>
 
             <TabItem Header="配置">
-
+                <configurationsettings:ConfigView></configurationsettings:ConfigView>
             </TabItem>
 
         </TabControl>

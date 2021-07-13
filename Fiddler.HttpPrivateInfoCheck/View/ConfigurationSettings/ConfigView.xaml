@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings.ConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="FeatureEnableCheckBox" HorizontalAlignment="Left" FontSize="18">是否启用检测</CheckBox>
+
+            <Button Grid.Column="1" Style="{StaticResource ButtonDashedInfo}" 
+                    hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                    Click="AddButton_OnClick"/>
+
+            <Button Grid.Column="2" Style="{StaticResource ButtonDashedInfo}" Foreground="{StaticResource InfoBrush}"
+                    hc:IconElement.Geometry="{StaticResource SaveGeometry}"
+                    Margin="0 0 5 0"
+                    Click="SaveButton_OnClick"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 10 0 10">
+            <TextBlock FontSize="18" Margin="0 0 0 5">匹配的 Host（以 ; 分隔）</TextBlock>
+            <TextBox FontSize="14" x:Name="MatchHostsTextBlock" TextWrapping="Wrap" MinHeight="50" MaxHeight="100" VerticalScrollBarVisibility="Auto"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="0 0 0 5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock FontSize="18" Margin="0 0 0 5">规则列表</TextBlock>
+
+            <hc:ScrollViewer Grid.Row="1">
+                <hc:WaterfallPanel 
+                        x:Name="CheckRulesWaterfallPanel"
+                        Groups="1"
+                        hc:PanelElement.FluidMoveBehavior="{StaticResource BehaviorXY200}">
+                </hc:WaterfallPanel>
+            </hc:ScrollViewer>
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>

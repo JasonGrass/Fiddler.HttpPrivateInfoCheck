@@ -6,7 +6,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
     /// <summary>
     /// 匹配的规则
     /// </summary>
-    class CheckRule
+    public class CheckRule
     {
         /// <summary>
         /// 用于配置的值
@@ -16,7 +16,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         /// <summary>
         /// 用于匹配的模式
         /// </summary>
-        public string MatchType { get; set; }
+        public RuleMatchType MatchType { get; set; }
 
         /// <summary>
         /// 是否匹配请求
@@ -37,7 +37,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
     /// <summary>
     /// 匹配计算的模式
     /// </summary>
-    enum RuleMatchType
+    public enum RuleMatchType
     {
         /// <summary>
         /// 字符串比较

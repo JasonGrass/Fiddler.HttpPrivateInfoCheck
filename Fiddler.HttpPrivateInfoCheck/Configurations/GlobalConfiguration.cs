@@ -9,7 +9,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
     /// <summary>
     /// 全局配置
     /// </summary>
-    class GlobalConfiguration
+    public class GlobalConfiguration
     {
         /// <summary>
         /// 需要进行检查的匹配域名
