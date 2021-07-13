@@ -10,6 +10,8 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler
 {
     class FiddlerViewProvider: IFiddlerViewProvider
     {
+        public MainView MainView { get; private set; }
+
         public IList<FiddlerTabPage> BuildFiddlerTabPages()
         {
             return BuildFiddlerViews();
@@ -17,7 +19,8 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler
 
         public IList<FiddlerTabPage> BuildFiddlerViews()
         {
-            var page = new FiddlerTabPage("HTTP 敏感信息监测", new MainView())
+            MainView = new MainView();
+            var page = new FiddlerTabPage("HTTP 敏感信息监测", MainView)
             {
                 TabIcon = SessionIcons.Information
             };
