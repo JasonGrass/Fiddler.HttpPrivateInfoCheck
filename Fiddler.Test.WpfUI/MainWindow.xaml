@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Fiddler.Test.WpfUI"
         xmlns:view="clr-namespace:Fiddler.HttpPrivateInfoCheck.View;assembly=Fiddler.HttpPrivateInfoCheck"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <view:MainView></view:MainView>

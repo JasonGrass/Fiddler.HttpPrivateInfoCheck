@@ -1,6 +1,10 @@
 ﻿#pragma warning disable MA0048 // File name must match type name
 
 
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Fiddler.HttpPrivateInfoCheck.Configurations
 {
     /// <summary>
@@ -9,6 +13,11 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
     public class CheckRule
     {
         /// <summary>
+        /// 规则的ID
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
         /// 用于配置的值
         /// </summary>
         public string Value { get; set; }
@@ -16,6 +25,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         /// <summary>
         /// 用于匹配的模式
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public RuleMatchType MatchType { get; set; }
 
         /// <summary>

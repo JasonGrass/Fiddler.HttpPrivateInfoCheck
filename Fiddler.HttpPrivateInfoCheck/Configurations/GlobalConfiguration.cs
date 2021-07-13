@@ -14,12 +14,12 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         /// <summary>
         /// 需要进行检查的匹配域名
         /// </summary>
-        public IList<string> MatchHosts { get; set; }
+        public IList<string> MatchHosts { get; set; } = new List<string>(0);
 
         /// <summary>
         /// 匹配检查的规则
         /// </summary>
-        public IList<CheckRule> CheckRules { get; set; }
+        public IList<CheckRule> CheckRules { get; set; } = new List<CheckRule>(0);
 
     }
 }

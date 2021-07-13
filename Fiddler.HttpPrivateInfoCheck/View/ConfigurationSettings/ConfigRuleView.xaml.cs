@@ -23,6 +23,8 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
     {
         public CheckRule Rule { get; set; }
 
+        public event EventHandler<CheckRule> Delete;
+
         public ConfigRuleView(CheckRule rule)
         {
             Rule = rule;
@@ -33,17 +35,35 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
 
             PatternValueTextBox.Text = rule.Value;
             HintMessageTextBox.Text = rule.Message;
+
+
+            MatchTypeComboBox.SelectionChanged += MatchTypeComboBoxOnSelectionChanged;
+            PatternValueTextBox.TextChanged += PatternValueTextBoxOnTextChanged;
+            HintMessageTextBox.TextChanged += HintMessageTextBoxOnTextChanged;
         }
 
+        private void HintMessageTextBoxOnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Rule.Message = HintMessageTextBox.Text.Trim();
+        }
+
+        private void PatternValueTextBoxOnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Rule.Value = PatternValueTextBox.Text.Trim();
+        }
+
+        private void MatchTypeComboBoxOnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MatchTypeComboBox.SelectedItem is MatchTypeInfoHelper helpler)
+            {
+                Rule.MatchType = helpler.MatchType;
+            }
+        }
 
         private void RemoveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void AddButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            
+            ConfigurationsManager.Instance.Configurations.CheckRules.Remove(Rule);
+            Delete?.Invoke(this, Rule);
         }
     }
 }
