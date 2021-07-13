@@ -14,11 +14,6 @@
 		<PackageReference Include="HandyControl" Version="3.2.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ApplicationDefinition Remove="App.xaml" />
-		<Page Include="App.xaml" />
-	</ItemGroup>
-
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 	  <Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;C:\Users\JasonLiu\Documents\Fiddler2\Scripts&quot; /S /E /Y" />
 	</Target>

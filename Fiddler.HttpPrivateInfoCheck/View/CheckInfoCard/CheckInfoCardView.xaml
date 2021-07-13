@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Fiddler.HttpPrivateInfoCheck.View.CheckInfoCard.CheckInfoCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.CheckInfoCard"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Style="{StaticResource BorderRegion}" 
+                Margin="5 3 5 3"
+                BorderBrush="Brown" BorderThickness="2"
+                d:DataContext="{d:DesignInstance local:CheckInfoCardView}">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.ColumnSpan="2" 
+                            Margin="2"
+                            Style="{StaticResource BorderTipPrimary}">
+                <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+            </Border>
+
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                           Margin="10 2 2 2"
+                           Text="{Binding Message}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+            <Button Grid.Row="1" Grid.Column="1" Width="50" 
+                        Style="{StaticResource ButtonDashedInfo}" 
+                        Foreground="{DynamicResource PrimaryTextBrush}" 
+                        hc:IconElement.Geometry="{StaticResource UpDownGeometry}"
+                        Click="DetailContentShow_OnClick"/>
+
+            <RichTextBox Grid.Row="2" Grid.Column="0" 
+                         Grid.ColumnSpan="2" 
+                         x:Name="DetailRichTextBox"
+                         Margin="0 5 0 0" IsReadOnly="True"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run FontSize="18" Text="{Binding DetailTitle}"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run FontSize="12" Text="{Binding DetailContent}"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+
+        </Grid>
+
+    </Border>
+</UserControl>
