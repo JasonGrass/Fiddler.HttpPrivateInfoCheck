@@ -16,6 +16,8 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
 
         public IList<HTTPHeaderItem> Headers { get; }
 
+        public IList<HTTPHeaderItem> MatchHeaders { get; }
+
         public string Body { get; }
 
         public string Url { get; }
@@ -25,6 +27,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
             Url = url;
             Headers = headers;
             Body = body;
+            MatchHeaders = new List<HTTPHeaderItem>();
         }
 
         public HttpCheckInfo Check()
@@ -63,7 +66,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
             if (checkHeaders.Count > 0)
             {
                 detailBuilder.AppendLine("[Header]");
-                detailBuilder.AppendLine(string.Join("\r\n", Headers.Select(h => $"{h.Name}: {h.Value}")));
+                detailBuilder.AppendLine(string.Join("\r\n", MatchHeaders.Select(h => $"{h.Name}: {h.Value}")));
             }
             if (checkBody.Count > 0)
             {
@@ -93,6 +96,10 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
             {
                 var check = Check($"{header.Name} {header.Value}");
                 messages.AddRange(check);
+                if (check.Count > 0)
+                {
+                    MatchHeaders.Add(header);
+                }
             }
             return messages;
         }
