@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Fiddler.HttpPrivateInfoCheck.Configurations;
 using Fiddler.HttpPrivateInfoCheck.View.CheckInformation;
 using Fiddler.HttpPrivateInfoCheck.ViewModel;
 
@@ -25,6 +26,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View
     {
         public MainView()
         {
+            ConfigurationsManager.Instance.LoadConfiguration();
             InitializeComponent();
         }
 

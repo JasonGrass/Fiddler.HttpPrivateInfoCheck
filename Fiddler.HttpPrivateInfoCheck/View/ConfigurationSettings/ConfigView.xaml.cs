@@ -38,14 +38,14 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             {
                 ConfigurationsManager.Instance.LoadConfiguration();
                 configuration = ConfigurationsManager.Instance.Configurations;
-                MatchHostsTextBlock.Text = string.Join(";", configuration.MatchHosts);
-                ExcludeHostsTextBlock.Text = string.Join(";", configuration.ExcludeHosts);
-                foreach (var rule in configuration.CheckRules)
-                {
-                    AddRuleView(rule);
-                }
             }
 
+            MatchHostsTextBlock.Text = string.Join(";", configuration.MatchHosts);
+            ExcludeHostsTextBlock.Text = string.Join(";", configuration.ExcludeHosts);
+            foreach (var rule in configuration.CheckRules)
+            {
+                AddRuleView(rule);
+            }
             FeatureEnableCheckBox.IsChecked = configuration.IsEnable;
         }
 
@@ -102,6 +102,11 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
         private void AddRuleView(CheckRule rule)
         {
             var ruleView = new ConfigRuleView(rule);
+            if (CheckRulesWaterfallPanel.Children.OfType<ConfigRuleView>().
+                Any(v=> string.Equals(v.Rule.Id, rule.Id, StringComparison.Ordinal)))
+            {
+                return;
+            }
             CheckRulesWaterfallPanel.Children.Add(ruleView);
             ruleView.Delete += RuleViewOnDelete;
         }
