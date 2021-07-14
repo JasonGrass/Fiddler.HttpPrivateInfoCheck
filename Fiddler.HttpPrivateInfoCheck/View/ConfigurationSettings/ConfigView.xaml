@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="5">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,7 +25,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Row="0" Margin="0 5 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -35,11 +35,13 @@
 
             <Button Grid.Column="1" Style="{StaticResource ButtonDashedInfo}" 
                     hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                    ToolTip="添加新的规则"
                     Click="AddButton_OnClick"/>
 
             <Button Grid.Column="2" Style="{StaticResource ButtonDashedInfo}" Foreground="{StaticResource InfoBrush}"
                     hc:IconElement.Geometry="{StaticResource SaveGeometry}"
-                    Margin="0 0 5 0"
+                    ToolTip="保存配置"
+                    Margin="10 0 5 0"
                     Click="SaveButton_OnClick"/>
         </Grid>
 

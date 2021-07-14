@@ -31,6 +31,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            // 如果当前配置为空，则加载配置
             var configuration = ConfigurationsManager.Instance.Configurations;
             if (configuration.MatchHosts.Count < 1 && configuration.CheckRules.Count < 1)
             {
@@ -42,6 +43,8 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
                     AddRuleView(rule);
                 }
             }
+
+            FeatureEnableCheckBox.IsChecked = configuration.IsEnable;
         }
 
         private void MatchHostsTextBlockOnTextChanged(object sender, TextChangedEventArgs e)
