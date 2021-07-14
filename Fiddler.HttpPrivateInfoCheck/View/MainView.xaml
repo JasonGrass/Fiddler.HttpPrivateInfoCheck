@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fiddler.HttpPrivateInfoCheck.View"
-             xmlns:vm="clr-namespace:Fiddler.HttpPrivateInfoCheck.ViewModel"
-             xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:configurationsettings="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings"
+             xmlns:hc="https://handyorg.github.io/handycontrol" 
+             xmlns:vm ="clr-namespace:Fiddler.HttpPrivateInfoCheck.ViewModel"
+             xmlns:configurationsettings="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings"
+             xmlns:about="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.About"
+             xmlns:checkInformation="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.CheckInformation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -25,17 +28,15 @@
                     Style="{StaticResource TabControlInLine}">
 
             <TabItem Header="数据展示">
-                <hc:ScrollViewer>
-                    <hc:WaterfallPanel 
-                        x:Name="HttpCheckInfosWaterfallPanel"
-                        Groups="1"
-                        hc:PanelElement.FluidMoveBehavior="{StaticResource BehaviorXY400}">
-                    </hc:WaterfallPanel>
-                </hc:ScrollViewer>
+                <checkInformation:CheckInformationView x:Name="InformationView"></checkInformation:CheckInformationView>
             </TabItem>
 
             <TabItem Header="配置">
                 <configurationsettings:ConfigView></configurationsettings:ConfigView>
+            </TabItem>
+
+            <TabItem Header="关于">
+                <about:AboutView></about:AboutView>
             </TabItem>
 
         </TabControl>

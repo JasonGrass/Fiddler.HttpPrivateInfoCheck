@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,25 +13,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Fiddler.HttpPrivateInfoCheck.View.CheckInformation;
-using Fiddler.HttpPrivateInfoCheck.ViewModel;
 
-namespace Fiddler.HttpPrivateInfoCheck.View
+namespace Fiddler.HttpPrivateInfoCheck.View.About
 {
     /// <summary>
-    /// MainView.xaml 的交互逻辑
+    /// AboutView.xaml 的交互逻辑
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class AboutView : UserControl
     {
-        public MainView()
+        public AboutView()
         {
             InitializeComponent();
         }
 
-        public void AddInfo(HttpCheckInfo info)
+        private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
-            InformationView.AddInfo(info);
-        } 
-
+            if (sender is Hyperlink link)
+            {
+                Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+            }
+        }
     }
 }
