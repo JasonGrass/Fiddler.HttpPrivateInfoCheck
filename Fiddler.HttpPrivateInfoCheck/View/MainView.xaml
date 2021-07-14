@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fiddler.HttpPrivateInfoCheck.View"
-             xmlns:checkInfoCard="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.CheckInfoCard"
              xmlns:vm="clr-namespace:Fiddler.HttpPrivateInfoCheck.ViewModel"
              xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:configurationsettings="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings"
              mc:Ignorable="d" 
