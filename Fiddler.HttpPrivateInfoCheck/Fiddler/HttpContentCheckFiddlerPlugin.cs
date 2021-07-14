@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Fiddler;
 using Fiddler.HttpPrivateInfoCheck.Configurations;
+using Fiddler.HttpPrivateInfoCheck.FakeIoc;
 using Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers;
 using Fiddler.HttpPrivateInfoCheck.View;
 using Fiddler.HttpPrivateInfoCheck.ViewModel;
@@ -96,7 +97,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler
 
             view.Dispatcher.Invoke(() =>
             {
-                view.AddInfo(info);
+                Container.View.AddInfo(info);
             });
         }
 

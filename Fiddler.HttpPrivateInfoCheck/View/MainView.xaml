@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fiddler.HttpPrivateInfoCheck.View"
              xmlns:hc="https://handyorg.github.io/handycontrol" 
-             xmlns:vm ="clr-namespace:Fiddler.HttpPrivateInfoCheck.ViewModel"
              xmlns:configurationsettings="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings"
              xmlns:about="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.About"
              xmlns:checkInformation="clr-namespace:Fiddler.HttpPrivateInfoCheck.View.CheckInformation"
@@ -28,7 +27,7 @@
                     Style="{StaticResource TabControlInLine}">
 
             <TabItem Header="数据展示">
-                <checkInformation:CheckInformationView x:Name="InformationView"></checkInformation:CheckInformationView>
+                <checkInformation:CheckInformationView/>
             </TabItem>
 
             <TabItem Header="配置">

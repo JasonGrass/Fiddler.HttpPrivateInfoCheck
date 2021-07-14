@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Fiddler.HttpPrivateInfoCheck.FakeIoc;
 using Fiddler.HttpPrivateInfoCheck.ViewModel;
 
 namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
@@ -19,11 +20,12 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
     /// <summary>
     /// CheckInformationView.xaml 的交互逻辑
     /// </summary>
-    public partial class CheckInformationView : UserControl
+    public partial class CheckInformationView : UserControl, ICheckInformationView
     {
         public CheckInformationView()
         {
             InitializeComponent();
+            Container.View = this;
         }
 
         public void AddInfo(HttpCheckInfo info)

@@ -28,10 +28,5 @@ namespace Fiddler.HttpPrivateInfoCheck.View
             InitializeComponent();
         }
 
-        public void AddInfo(HttpCheckInfo info)
-        {
-            InformationView.AddInfo(info);
-        } 
-
     }
 }
