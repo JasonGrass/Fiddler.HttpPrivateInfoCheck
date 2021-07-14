@@ -26,6 +26,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             InitializeComponent();
             Loaded += OnLoaded;
             MatchHostsTextBlock.TextChanged += MatchHostsTextBlockOnTextChanged;
+            ExcludeHostsTextBlock.TextChanged += ExcludeHostsTextBlockOnTextChanged;
             FeatureEnableCheckBox.Checked += FeatureEnableCheckBoxOnChecked;
         }
 
@@ -38,6 +39,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
                 ConfigurationsManager.Instance.LoadConfiguration();
                 configuration = ConfigurationsManager.Instance.Configurations;
                 MatchHostsTextBlock.Text = string.Join(";", configuration.MatchHosts);
+                ExcludeHostsTextBlock.Text = string.Join(";", configuration.ExcludeHosts);
                 foreach (var rule in configuration.CheckRules)
                 {
                     AddRuleView(rule);
@@ -51,12 +53,26 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
         {
             if (string.IsNullOrWhiteSpace(MatchHostsTextBlock.Text))
             {
+                ConfigurationsManager.Instance.Configurations.MatchHosts = new List<string>();
                 return;
             }
 
             var hosts = MatchHostsTextBlock.Text.Split(new string[] {";"}, StringSplitOptions.RemoveEmptyEntries)
                 .Select(s => s.Trim()).Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
             ConfigurationsManager.Instance.Configurations.MatchHosts = hosts;
+        }
+
+        private void ExcludeHostsTextBlockOnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ExcludeHostsTextBlock.Text))
+            {
+                ConfigurationsManager.Instance.Configurations.ExcludeHosts = new List<string>();
+                return;
+            }
+
+            var hosts = ExcludeHostsTextBlock.Text.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => s.Trim()).Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
+            ConfigurationsManager.Instance.Configurations.ExcludeHosts = hosts;
         }
 
         private void FeatureEnableCheckBoxOnChecked(object sender, RoutedEventArgs e)

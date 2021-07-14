@@ -22,6 +22,11 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         public IList<string> MatchHosts { get; set; } = new List<string>(0);
 
         /// <summary>
+        /// 排除的 Host 域名
+        /// </summary>
+        public IList<string> ExcludeHosts { get; set; } = new List<string>(0);
+
+        /// <summary>
         /// 匹配检查的规则
         /// </summary>
         public IList<CheckRule> CheckRules { get; set; } = new List<CheckRule>(0);

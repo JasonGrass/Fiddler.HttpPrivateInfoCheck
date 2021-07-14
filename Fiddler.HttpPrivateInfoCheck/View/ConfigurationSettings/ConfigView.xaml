@@ -22,6 +22,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -50,7 +51,12 @@
             <TextBox FontSize="14" x:Name="MatchHostsTextBlock" TextWrapping="Wrap" MinHeight="50" MaxHeight="100" VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
 
-        <Grid Grid.Row="2" Margin="0 0 0 5">
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 10 0 10">
+            <TextBlock FontSize="18" Margin="0 0 0 5">排除的 Host（以 ; 分隔）</TextBlock>
+            <TextBox FontSize="14" x:Name="ExcludeHostsTextBlock" TextWrapping="Wrap" MinHeight="50" MaxHeight="100" VerticalScrollBarVisibility="Auto"/>
+        </StackPanel>
+
+        <Grid Grid.Row="3" Margin="0 0 0 5">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

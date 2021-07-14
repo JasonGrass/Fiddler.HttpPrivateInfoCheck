@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderBrush="Gray" BorderThickness="1"  Margin="0 5 0 5" CornerRadius="3" Padding="5">
+    <Border BorderBrush="{StaticResource InfoBrush}" BorderThickness="1"  Margin="0 5 0 5" CornerRadius="3" Padding="5">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>

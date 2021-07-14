@@ -17,6 +17,16 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Utils
         public static bool IsMatch(string url)
         {
             var hosts = ConfigurationsManager.Instance.Configurations.MatchHosts;
+            var excludeHosts = ConfigurationsManager.Instance.Configurations.ExcludeHosts;
+
+            foreach (var host in excludeHosts)
+            {
+                if (url.ToLower().Contains(host.ToLower()))
+                {
+                    return false;
+                }
+            }
+
             foreach (var host in hosts)
             {
                 if (url.ToLower().Contains(host.ToLower()))
