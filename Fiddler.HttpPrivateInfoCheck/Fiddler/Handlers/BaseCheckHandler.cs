@@ -32,6 +32,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
             var checkHeaders = CheckHeaders();
             var checkBody = CheckBody();
 
+            // 提示信息
             var messageBuilder = new StringBuilder();
             if (checkHeaders.Count > 0)
             {
@@ -44,6 +45,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
                 messageBuilder.Append(string.Join(";", checkBody));
             }
 
+            // 详情（重复一遍提示信息）
             var detailBuilder = new StringBuilder();
             if (checkHeaders.Count > 0)
             {
@@ -53,14 +55,15 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
             if (checkBody.Count > 0)
             {
                 detailBuilder.AppendLine("[Body] ");
-                detailBuilder.AppendLine(string.Join(";", checkBody));
+                detailBuilder.AppendLine(string.Join("\r\n", checkBody));
             }
 
+            // 详情（Header 和 Body 的内容）
             detailBuilder.AppendLine("---------------------------");
             if (checkHeaders.Count > 0)
             {
                 detailBuilder.AppendLine("[Header]");
-                detailBuilder.AppendLine(string.Join(";", Headers.Select(h => $"{h.Name}:{h.Value}")));
+                detailBuilder.AppendLine(string.Join("\r\n", Headers.Select(h => $"{h.Name}: {h.Value}")));
             }
             if (checkBody.Count > 0)
             {
