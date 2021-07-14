@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fiddler;
+using Fiddler.HttpPrivateInfoCheck.Configurations;
+using Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers;
 using Fiddler.HttpPrivateInfoCheck.View;
 using Fiddler.HttpPrivateInfoCheck.ViewModel;
 using Jgrass.FiddlerPlugin;
@@ -12,7 +14,7 @@ using Jgrass.FiddlerPlugin;
 
 namespace Fiddler.HttpPrivateInfoCheck.Fiddler
 {
-    public class HttpContentCheckFiddlerPlugin: FiddlerPluginApplication
+    public class HttpContentCheckFiddlerPlugin : FiddlerPluginApplication
     {
         private Func<MainView> MainView { get; set; }
 
@@ -25,37 +27,67 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler
 
         public override void AutoTamperRequestAfter(Session oSession)
         {
-            if (!oSession.url.Contains("seewo.com"))
+            if (!ConfigurationsManager.Instance.Configurations.IsEnable)
+            {
+                return;
+            }
+
+            if (!Utils.ConfigurationHelper.IsMatch(oSession.url))
             {
                 return;
             }
 
             var headers = oSession.RequestHeaders;
-            var requestBody = "";
+            var body = "";
             try
             {
-                requestBody = Encoding.UTF8.GetString(oSession.RequestBody);
+                body = Encoding.UTF8.GetString(oSession.RequestBody);
             }
             catch (Exception e)
             {
-                requestBody = $"[Cannot Get RequestBody] {e.Message}";
+                body = $"[Cannot Get RequestBody] {e.Message}";
             }
 
-            AddInfo(new HttpCheckInfo()
-            {
-                RequestUrl = $"[Request] {oSession.fullUrl}",
-                Message = "测试信息",
-                Detail = requestBody
-            });
+            var handler = new RequestCheckHandler(oSession.fullUrl, headers.ToList(), body);
+            var info = handler.Check();
+            AddInfo(info);
         }
 
         public override void AutoTamperResponseAfter(Session oSession)
         {
-            base.AutoTamperResponseAfter(oSession);
+            if (!ConfigurationsManager.Instance.Configurations.IsEnable)
+            {
+                return;
+            }
+
+            if (!Utils.ConfigurationHelper.IsMatch(oSession.url))
+            {
+                return;
+            }
+
+            var headers = oSession.ResponseHeaders;
+            var body = "";
+            try
+            {
+                body = Encoding.UTF8.GetString(oSession.ResponseBody);
+            }
+            catch (Exception e)
+            {
+                body = $"[Cannot Get ResponseBody] {e.Message}";
+            }
+
+            var handler = new ResponseCheckHandler(oSession.fullUrl, headers.ToList(), body);
+            var info = handler.Check();
+            AddInfo(info);
         }
 
         private void AddInfo(HttpCheckInfo info)
         {
+            if (info == null)
+            {
+                return;
+            }
+
             var view = MainView.Invoke();
             if (view == null)
             {
