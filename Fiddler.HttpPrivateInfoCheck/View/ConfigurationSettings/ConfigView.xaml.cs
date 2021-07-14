@@ -26,6 +26,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             InitializeComponent();
             Loaded += OnLoaded;
             MatchHostsTextBlock.TextChanged += MatchHostsTextBlockOnTextChanged;
+            FeatureEnableCheckBox.Checked += FeatureEnableCheckBoxOnChecked;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -53,6 +54,11 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             var hosts = MatchHostsTextBlock.Text.Split(new string[] {";"}, StringSplitOptions.RemoveEmptyEntries)
                 .Select(s => s.Trim()).Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
             ConfigurationsManager.Instance.Configurations.MatchHosts = hosts;
+        }
+
+        private void FeatureEnableCheckBoxOnChecked(object sender, RoutedEventArgs e)
+        {
+            ConfigurationsManager.Instance.Configurations.IsEnable = FeatureEnableCheckBox.IsChecked is true;
         }
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)

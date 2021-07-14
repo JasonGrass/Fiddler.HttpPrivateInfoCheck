@@ -12,6 +12,11 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
     public class GlobalConfiguration
     {
         /// <summary>
+        /// 是否开启检查
+        /// </summary>
+        public bool IsEnable { get; set; }
+
+        /// <summary>
         /// 需要进行检查的匹配域名
         /// </summary>
         public IList<string> MatchHosts { get; set; } = new List<string>(0);
