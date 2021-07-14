@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Fiddler.HttpPrivateInfoCheck.Configurations;
 
 namespace Fiddler.HttpPrivateInfoCheck.View.About
 {
@@ -24,6 +25,12 @@ namespace Fiddler.HttpPrivateInfoCheck.View.About
         public AboutView()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ConfigFileTextBox.Text = ConfigurationsManager.Instance.ConfigFile;
         }
 
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)

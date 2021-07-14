@@ -12,7 +12,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
     {
         private string _configFile;
 
-        private string ConfigFile
+        public string ConfigFile
         {
             get
             {
