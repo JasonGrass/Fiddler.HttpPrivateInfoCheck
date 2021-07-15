@@ -1,5 +1,8 @@
 # HTTP 请求敏感信息检查插件
 
+一个 Fiddler 插件，帮你检查 HTTP 请求和响应中的敏感信息(或者其它关心的数据，可自行配置)。  
+检查的内容：请求和响应的 Url，Header 和 Body。
+
 ## 🍕 Fiddler 插件安装
 
 在 [Release](https://github.com/JasonGrass/Fiddler.HttpPrivateInfoCheck/releases) 中下载插件 ZIP 包，
@@ -36,7 +39,7 @@ pattern 值：17712341234
 
 ### 规则
 
-插件将检查请求和响应中的 Header 和 Body 中的数据（字符串）。
+插件将检查请求和响应中的 Url, Header 和 Body 中的数据（字符串）。
 
 * 字符串匹配模式
 采用字符串包含模式，如果出现了指定的值，则产生提示。
