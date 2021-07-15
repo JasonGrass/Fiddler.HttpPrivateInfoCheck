@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Fiddler.HttpPrivateInfoCheck.Fiddler.Utils;
 
 namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
 {
@@ -79,12 +80,12 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
             if (checkHeaders.Count > 0)
             {
                 detailBuilder.AppendLine("[Header]");
-                detailBuilder.AppendLine(string.Join("\r\n", MatchHeaders.Select(h => $"{h.Name}: {h.Value}")));
+                detailBuilder.AppendLine(string.Join("\r\n", MatchHeaders.Select(h => $"{h.Name}: {JsonHelper.FormatJsonString(h.Value)}")));
             }
             if (checkBody.Count > 0)
             {
                 detailBuilder.AppendLine("[Body]");
-                detailBuilder.AppendLine(Body);
+                detailBuilder.AppendLine(JsonHelper.FormatJsonString(Body));
             }
 
             if (checkHeaders.Count < 1 && checkBody.Count < 1)
