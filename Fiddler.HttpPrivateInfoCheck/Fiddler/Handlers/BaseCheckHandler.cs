@@ -32,15 +32,23 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
 
         public HttpCheckInfo Check()
         {
+            var checkUrl = Check(Url);
             var checkHeaders = CheckHeaders();
             var checkBody = CheckBody();
 
             // 提示信息
             var messageBuilder = new StringBuilder();
+            if (checkUrl.Count > 0)
+            {
+                messageBuilder.Append("[Url] ");
+                messageBuilder.Append(string.Join(";", checkUrl));
+                messageBuilder.Append(" ");
+            }
             if (checkHeaders.Count > 0)
             {
                 messageBuilder.Append("[Header] ");
                 messageBuilder.Append(string.Join(";", checkHeaders));
+                messageBuilder.Append(" ");
             }
             if (checkBody.Count > 0)
             {
@@ -48,8 +56,13 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
                 messageBuilder.Append(string.Join(";", checkBody));
             }
 
-            // 详情（重复一遍提示信息）
+            // 详情（重复一遍提示信息，样式不同）
             var detailBuilder = new StringBuilder();
+            if (checkUrl.Count > 0)
+            {
+                detailBuilder.AppendLine("[Url]");
+                detailBuilder.AppendLine(string.Join(";", checkUrl));
+            }
             if (checkHeaders.Count > 0)
             {
                 detailBuilder.AppendLine("[Header] ");
