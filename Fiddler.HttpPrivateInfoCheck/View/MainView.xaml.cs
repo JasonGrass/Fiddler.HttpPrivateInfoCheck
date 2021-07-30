@@ -29,16 +29,16 @@ namespace Fiddler.HttpPrivateInfoCheck.View
         {
             ConfigurationsManager.Instance.LoadConfiguration();
             InitializeComponent();
-            Growl.Register(GrowlToken, GrowlTipPanel);
 
             // 本来就是没有 Application 的，但 HandyControl 这个库依赖了 Application.Current
-            var application = Application.Current;
-            if (application == null)
+            var app = Application.Current;
+            if (app == null)
             {
-                var application1 = new Application();
-                application1.Resources = this.Resources;
+                var application = new Application();
+                application.Resources = this.Resources;
             }
-
+            
+            Growl.Register(GrowlToken, GrowlTipPanel);
         }
 
         public const string GrowlToken = "fiddler.private.info.check";

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Fiddler.HttpPrivateInfoCheck.Configurations;
+using HandyControl.Controls;
 
 namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
 {
@@ -82,7 +83,15 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ConfigurationsManager.Instance.Save();
+            try
+            {
+                ConfigurationsManager.Instance.Save();
+                Growl.Success($"保存成功", MainView.GrowlToken);
+            }
+            catch (Exception ex)
+            {
+                Growl.Error($"保存失败({ex.Message})", MainView.GrowlToken);
+            }
         }
 
         private void AddButton_OnClick(object sender, RoutedEventArgs e)
