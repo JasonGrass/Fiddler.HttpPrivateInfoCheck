@@ -141,8 +141,8 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
 
             var dialog = new SaveFileDialog()
             {
-                Title = "选择导出的文件(json)，如果存在则会覆盖",
-                Filter = "JSON文件(*.json)|*.json",
+                Title = "选择导出的文件(txt)，如果存在则会覆盖",
+                Filter = "文本文件(*.txt)|*.txt",
                 RestoreDirectory = true,
             };
             var result = dialog.ShowDialog();
@@ -154,8 +154,23 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
 
             try
             {
-                var str = JsonConvert.SerializeObject(CheckInfos);
-                File.WriteAllText(dialog.FileName, str);
+                //var settings = new JsonSerializerSettings();
+                //settings.Formatting = Formatting.Indented;
+                //var text = JsonConvert.SerializeObject(CheckInfos, settings);
+
+                using var fs = new FileStream(dialog.FileName, FileMode.Create);
+                using var writer = new StreamWriter(fs, Encoding.UTF8);
+                foreach (var info in CheckInfos)
+                {
+                    writer.WriteLine(info.RequestUrl);
+                    writer.WriteLine(info.Message);
+                    writer.WriteLine(info.Detail);
+                    writer.WriteLine();
+                    writer.WriteLine("##########################################################");
+                    writer.WriteLine();
+                }
+                writer.Flush();
+
                 Growl.Success("导出成功", MainView.GrowlToken);
             }
             catch (Exception ex)
