@@ -41,9 +41,11 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
                 DetailContent = info.Detail
             };
             view.Tag = info;
+            view.Deleted += ViewItemOnDeleted;
 
             CheckInfos.Add(info);
             HttpCheckInfosWaterfallPanel.Children.Add(view);
+            UpdateCount();
         }
 
         //清空全部
@@ -51,6 +53,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
         {
             HttpCheckInfosWaterfallPanel.Children.Clear();
             CheckInfos.Clear();
+            UpdateCount();
         }
 
         /// <summary>
@@ -81,8 +84,26 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
             foreach (var view in removeViews)
             {
                 HttpCheckInfosWaterfallPanel.Children.Remove(view);
+                UpdateCount();
             }
 
+        }
+
+        private void ViewItemOnDeleted(object sender, EventArgs e)
+        {
+            if (sender is CheckInfoCardView {Tag: HttpCheckInfo info})
+            {
+                CheckInfos.Remove(info);
+                UpdateCount();
+            }
+        }
+
+        /// <summary>
+        /// 更新界面上的计数显示
+        /// </summary>
+        private void UpdateCount()
+        {
+            CountTextBlock.Text = HttpCheckInfosWaterfallPanel.Children.Count.ToString();
         }
 
         private bool IsSame(HttpCheckInfo info1, HttpCheckInfo info2)

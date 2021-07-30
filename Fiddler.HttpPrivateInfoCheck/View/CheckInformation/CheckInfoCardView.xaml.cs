@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -45,6 +46,8 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
             set => SetValue(DetailContentProperty, value);
         }
 
+        public event EventHandler? Deleted;
+
         public CheckInfoCardView()
         {
             InitializeComponent();
@@ -75,8 +78,8 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
             if (this.Parent is Panel panel)
             {
                 panel.Children.Remove(this);
+                Deleted?.Invoke(this, EventArgs.Empty);
             }
-
         }
 
         private void MessageTextBox_OnMouseUp(object sender, MouseButtonEventArgs e)

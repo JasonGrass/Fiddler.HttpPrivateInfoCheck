@@ -26,19 +26,31 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Grid>
 
-            <Button Style="{StaticResource ButtonInfo}"
-                    Margin="0 5 5 3"
-                    Width="100"
-                    Click="DistinctButton_OnClick">去除重复</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock x:Name="CountTextBlock"
+                           Margin="10 0 0 0"
+                           Style="{StaticResource TextBlockTitle}">0</TextBlock>
+            </StackPanel>
 
-            <Button Style="{StaticResource ButtonInfo}"
-                    Margin="0 5 5 3"
-                    Click="ClearButton_OnClick"
-                    Width="60">清空</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
-        </StackPanel>
+                <Button Style="{StaticResource ButtonInfo}"
+                        Margin="0 5 5 3"
+                        Width="100"
+                        Click="DistinctButton_OnClick">去除重复</Button>
+
+                <Button Style="{StaticResource ButtonInfo}"
+                        Margin="0 5 5 3"
+                        Click="ClearButton_OnClick"
+                        Width="60">清空</Button>
+
+            </StackPanel>
+
+        </Grid>
+
+
 
 
         <hc:Divider Grid.Row="1" Margin="0 0 0 0"/>
