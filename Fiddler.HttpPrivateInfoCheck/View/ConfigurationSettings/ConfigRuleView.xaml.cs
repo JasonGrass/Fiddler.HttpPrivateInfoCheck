@@ -35,6 +35,11 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
         public event EventHandler<CheckRule> Delete;
 
         /// <summary>
+        /// 规则编辑之后发生
+        /// </summary>
+        public event EventHandler ContentChanged;
+
+        /// <summary>
         /// 使用规则配置数据，创建一个规则展示 view
         /// </summary>
         /// <param name="rule"></param>
@@ -67,11 +72,13 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
         private void HintMessageTextBoxOnTextChanged(object sender, TextChangedEventArgs e)
         {
             Rule.Message = HintMessageTextBox.Text.Trim();
+            ContentChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void PatternValueTextBoxOnTextChanged(object sender, TextChangedEventArgs e)
         {
             Rule.Value = PatternValueTextBox.Text.Trim();
+            ContentChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void MatchTypeComboBoxOnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,12 +86,14 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             if (MatchTypeComboBox.SelectedItem is MatchTypeInfoHelper helpler)
             {
                 Rule.MatchType = helpler.MatchType;
+                ContentChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
         private void EnableCheckBoxOnChecked(object sender, RoutedEventArgs e)
         {
             RefreshEnable(EnableCheckBox.IsChecked is true);
+            ContentChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RefreshEnable(bool enable)
@@ -99,6 +108,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
         {
             ConfigurationsManager.Instance.Configurations.CheckRules.Remove(Rule);
             Delete?.Invoke(this, Rule);
+            ContentChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

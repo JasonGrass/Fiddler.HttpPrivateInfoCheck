@@ -43,6 +43,7 @@
                     hc:IconElement.Geometry="{StaticResource SaveGeometry}"
                     ToolTip="保存配置"
                     Margin="10 0 5 0"
+                    x:Name="SaveButton"
                     Click="SaveButton_OnClick"/>
         </Grid>
 

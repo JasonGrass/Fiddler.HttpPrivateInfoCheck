@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Fiddler.HttpPrivateInfoCheck.Configurations;
 using HandyControl.Controls;
+using HandyControl.Data;
 
 namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
 {
@@ -87,6 +88,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             {
                 ConfigurationsManager.Instance.Save();
                 Growl.Success($"保存成功", MainView.GrowlToken);
+                SetChanged(false);
             }
             catch (Exception ex)
             {
@@ -106,6 +108,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
 
             AddRuleView(rule);
             ConfigurationsManager.Instance.Configurations.CheckRules.Add(rule);
+            SetChanged();
         }
 
         private void AddRuleView(CheckRule rule)
@@ -118,6 +121,12 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
             }
             CheckRulesWaterfallPanel.Children.Add(ruleView);
             ruleView.Delete += RuleViewOnDelete;
+            ruleView.ContentChanged += RuleViewOnContentChanged;
+        }
+
+        private void RuleViewOnContentChanged(object sender, EventArgs e)
+        {
+            SetChanged();
         }
 
         private void RuleViewOnDelete(object sender, CheckRule e)
@@ -127,6 +136,24 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
                 ruleView.Delete -= RuleViewOnDelete;
                 CheckRulesWaterfallPanel.Children.Remove(ruleView);
             }
+        }
+
+        /// <summary>
+        /// 设置是否有内部变更
+        /// </summary>
+        /// <param name="changed"></param>
+        private void SetChanged(bool changed = true)
+        {
+            // 有变化
+            if (changed)
+            {
+                SaveButton.Foreground = this.TryFindResource(ResourceToken.DangerBrush) as Brush;
+            }
+            else
+            {
+                SaveButton.Foreground = this.TryFindResource(ResourceToken.InfoBrush) as Brush;
+            }
+
         }
     }
 }
