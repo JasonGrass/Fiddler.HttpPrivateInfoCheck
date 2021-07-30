@@ -18,7 +18,7 @@ using Fiddler.HttpPrivateInfoCheck.ViewModel;
 namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
 {
     /// <summary>
-    /// CheckInformationView.xaml 的交互逻辑
+    /// 展示检测到的接口信息的页面
     /// </summary>
     public partial class CheckInformationView : UserControl, ICheckInformationView
     {

@@ -1,10 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
 {
     /// <summary>
-    /// CheckInfoCardView.xaml 的交互逻辑
+    /// 检测到敏感信息的接口数据展示
     /// </summary>
     public partial class CheckInfoCardView : UserControl
     {
@@ -62,6 +63,32 @@ namespace Fiddler.HttpPrivateInfoCheck.View.CheckInformation
                 DetailRichTextBox.Visibility = Visibility.Visible;
             }
 
+        }
+
+        /// <summary>
+        /// 删除当前这个 view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Clear_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (this.Parent is Panel panel)
+            {
+                panel.Children.Remove(this);
+            }
+
+        }
+
+        private void MessageTextBox_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (DetailRichTextBox.Visibility == Visibility.Visible)
+            {
+                DetailRichTextBox.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                DetailRichTextBox.Visibility = Visibility.Visible;
+            }
         }
     }
 }

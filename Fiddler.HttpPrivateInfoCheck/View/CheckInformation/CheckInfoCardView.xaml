@@ -35,15 +35,28 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.ColumnSpan="2" 
-                            Margin="2"
+            <!-- 标题 -->
+            <Border Grid.Row="0" Grid.Column="0"
+                            Margin="2 2 15 2"
                             Style="{StaticResource BorderTipPrimary}">
                 <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
             </Border>
 
-            <TextBlock Grid.Row="1" Grid.Column="0"
-                           Margin="10 2 2 2"
-                           Text="{Binding Message}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <!-- 关闭显式-->
+            <Button Grid.Row="0" Grid.Column="1" Width="50" 
+                    Style="{StaticResource ButtonDashedInfo}" 
+                    Foreground="{DynamicResource  DangerBrush}" 
+                    hc:IconElement.Geometry="{StaticResource CloseGeometry}"
+                    Click="Clear_OnClick"/>
+
+            <!-- 简单提示-->
+            <Border Grid.Row="1" Grid.Column="0"
+                    Margin="2 2 15 2"
+                    Style="{StaticResource BorderTipInfo}"
+                    MouseUp="MessageTextBox_OnMouseUp">
+                <TextBlock Text="{Binding Message}"
+                           VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </Border>
 
             <Button Grid.Row="1" Grid.Column="1" Width="50" 
                         Style="{StaticResource ButtonDashedInfo}" 
