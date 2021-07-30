@@ -52,7 +52,7 @@
             <!-- 简单提示-->
             <Border Grid.Row="1" Grid.Column="0"
                     Margin="2 2 15 2"
-                    Style="{StaticResource BorderTipInfo}"
+                    Style="{StaticResource BorderTipPrimary}"
                     MouseUp="MessageTextBox_OnMouseUp">
                 <TextBlock Text="{Binding Message}"
                            VerticalAlignment="Center" HorizontalAlignment="Left"/>
