@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Fiddler.HttpPrivateInfoCheck.Configurations
 {
@@ -30,6 +32,12 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         /// 匹配检查的规则
         /// </summary>
         public IList<CheckRule> CheckRules { get; set; } = new List<CheckRule>(0);
+
+        /// <summary>
+        /// 启用的规则
+        /// </summary>
+        [JsonIgnore]
+        public IList<CheckRule> EnableCheckRules => CheckRules.Where(r => r.IsEnable).ToList();
 
     }
 }

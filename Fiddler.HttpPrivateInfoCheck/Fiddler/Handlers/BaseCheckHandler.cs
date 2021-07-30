@@ -126,7 +126,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Fiddler.Handlers
         private List<string> Check(string content)
         {
             List<string> messages = new List<string>(0);
-            var rules = ConfigurationsManager.Instance.Configurations.CheckRules;
+            var rules = ConfigurationsManager.Instance.Configurations.EnableCheckRules;
             foreach (var checkRule in rules)
             {
                 var tuple = IsMatchCheckRule(checkRule, content);

@@ -90,6 +90,7 @@ namespace Fiddler.HttpPrivateInfoCheck.View.ConfigurationSettings
         private void RefreshEnable(bool enable)
         {
             EnableCheckBox.IsChecked = enable;
+            Rule.IsEnable = enable;
             EnableCheckBox.Content = enable ? "启用" : "禁用";
             MainBoard.Background = enable ? EnableBrush : OffEnableBrush;
         }

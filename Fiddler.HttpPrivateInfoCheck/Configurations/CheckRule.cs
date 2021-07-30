@@ -31,7 +31,7 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         /// <summary>
         /// 是否启用
         /// </summary>
-        public bool IsEnable { get; set; }
+        public bool IsEnable { get; set; } = true;
 
         /// <summary>
         /// 是否匹配请求
