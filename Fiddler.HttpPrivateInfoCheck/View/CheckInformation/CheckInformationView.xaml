@@ -39,12 +39,17 @@
                 <Button Style="{StaticResource ButtonInfo}"
                         Margin="0 5 5 3"
                         Width="100"
+                        Click="ExportButton_OnClick">导出数据</Button>
+
+                <Button Style="{StaticResource ButtonInfo}"
+                        Margin="0 5 5 3"
+                        Width="100"
                         Click="DistinctButton_OnClick">去除重复</Button>
 
                 <Button Style="{StaticResource ButtonInfo}"
                         Margin="0 5 5 3"
                         Click="ClearButton_OnClick"
-                        Width="60">清空</Button>
+                        Width="100">清空</Button>
 
             </StackPanel>
 

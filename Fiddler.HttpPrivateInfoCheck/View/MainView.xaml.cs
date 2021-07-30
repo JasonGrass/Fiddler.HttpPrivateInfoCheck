@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Fiddler.HttpPrivateInfoCheck.Configurations;
 using Fiddler.HttpPrivateInfoCheck.View.CheckInformation;
 using Fiddler.HttpPrivateInfoCheck.ViewModel;
+using HandyControl.Controls;
 
 namespace Fiddler.HttpPrivateInfoCheck.View
 {
@@ -28,7 +29,18 @@ namespace Fiddler.HttpPrivateInfoCheck.View
         {
             ConfigurationsManager.Instance.LoadConfiguration();
             InitializeComponent();
+            Growl.Register(GrowlToken, GrowlTipPanel);
+
+            // 本来就是没有 Application 的，但 HandyControl 这个库依赖了 Application.Current
+            var application = Application.Current;
+            if (application == null)
+            {
+                var application1 = new Application();
+                application1.Resources = this.Resources;
+            }
+
         }
 
+        public const string GrowlToken = "fiddler.private.info.check";
     }
 }

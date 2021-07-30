@@ -40,5 +40,12 @@
 
         </TabControl>
 
+        <Grid x:Name="GrowlTipPanel" 
+              Margin="0 42 0 0"
+              HorizontalAlignment="Right" 
+              VerticalAlignment="Top">
+
+        </Grid>
+
     </Grid>
 </UserControl>
