@@ -17,14 +17,30 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderBrush="{StaticResource InfoBrush}" BorderThickness="1"  Margin="0 5 0 5" CornerRadius="3" Padding="5">
-        <Grid>
+    <Border BorderBrush="{StaticResource InfoBrush}" 
+            BorderThickness="1"  
+            x:Name="MainBoard"
+            Margin="0 5 0 5" CornerRadius="3" Padding="5">
+        <Grid x:Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+
+                <CheckBox Grid.Column="0" Margin=" 5 0 20 0"
+                          FontSize="14"
+                          VerticalAlignment="Center"
+                          x:Name="EnableCheckBox"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -35,7 +51,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="匹配模式：" FontSize="14" Margin="0 0 5 0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Text="匹配模式：" FontSize="14" Margin="0 0 5 0" VerticalAlignment="Center"/>
                 <ComboBox Grid.Column="1" x:Name="MatchTypeComboBox" SelectedIndex="0" Width="120"/>
 
                 <TextBlock Grid.Column="2"  Text="pattern 值：" FontSize="14" Margin="10 0 5 0" VerticalAlignment="Center"/>
@@ -49,10 +65,18 @@
 
             </Grid>
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 5 0 0">
-                <TextBlock Text="命中提示信息：" FontSize="14" Margin="0 0 0 5" />
-                <TextBox x:Name="HintMessageTextBox"></TextBox>
-            </StackPanel>
+            <Grid Grid.Row="1" Grid.Column="1" Margin="0 5 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="命中提示信息：" 
+                           FontSize="14" Margin="0 0 0 5"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" x:Name="HintMessageTextBox"></TextBox>
+            </Grid>
+
 
         </Grid>
     </Border>

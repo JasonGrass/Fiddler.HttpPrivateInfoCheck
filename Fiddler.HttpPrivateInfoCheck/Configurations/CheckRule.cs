@@ -29,6 +29,11 @@ namespace Fiddler.HttpPrivateInfoCheck.Configurations
         public RuleMatchType MatchType { get; set; }
 
         /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnable { get; set; }
+
+        /// <summary>
         /// 是否匹配请求
         /// </summary>
         public bool IsMatchRequest { get; set; } = true;
