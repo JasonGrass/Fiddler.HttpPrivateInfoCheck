@@ -10,6 +10,22 @@
 
 `%USERPROFILE%\Documents\Fiddler2\Scripts`
 
+安装完成之后，目录结构大致如下：
+
+```plain
+C:\Users\YourName\Documents\Fiddler2
+│
+└─Scripts
+   │
+   └─Fiddler.HttpPrivateInfoCheck.ext
+          ├Fiddler.HttpPrivateInfoCheck.dll
+          ├Fiddler.HttpPrivateInfoCheck.pdb
+          ├HandyControl.dll
+          ├Jgrass.FiddlerPlugin.dll
+          ├Newtonsoft.Json.dll
+          └System.ValueTuple.dll
+```
+
 **依赖环境**
 
 [Download .NET Framework 4.8 | Free official downloads](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48 )  
