@@ -1,24 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
-		<UseWPF>true</UseWPF>
-		<LangVersion>latest</LangVersion>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- 根据 Fiddler 插件的要求，放入到子文件夹里面的插件，必须放入到后缀为 .ext 文件夹里面 -->
+    <OutputPath>..\Bin\$(Configuration)\$(AssemblyName).ext\</OutputPath>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Reference Include="Fiddler">
-			<HintPath>..\Dependency\Fiddler.exe</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<PackageReference Include="Jgrass.FiddlerPlugin" Version="2.0.1" />
-		<PackageReference Include="HandyControl" Version="3.2.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
-	</ItemGroup>
+  <ItemGroup>
+    <Reference Include="Fiddler">
+      <HintPath>..\Dependency\Fiddler.exe</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <PackageReference Include="Jgrass.FiddlerPlugin" Version="2.0.1" />
+    <PackageReference Include="HandyControl" Version="3.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-	  <Exec Command="xcopy &quot;$(TargetDir)&quot; &quot;%25USERPROFILE%25\Documents\Fiddler2\Scripts&quot; /S /E /Y" />
-	</Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;..\\Bin\\Debug&quot; &quot;%25USERPROFILE%25\Documents\Fiddler2\Scripts&quot; /S /E /Y" />
+  </Target>
 
 </Project>
