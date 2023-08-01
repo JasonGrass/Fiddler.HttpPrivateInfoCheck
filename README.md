@@ -10,6 +10,12 @@
 
 `%USERPROFILE%\Documents\Fiddler2\Scripts`
 
+**依赖环境**
+
+[Download .NET Framework 4.8 | Free official downloads](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48 )  
+[Microsoft .NET Framework 4.8 offline installer for Windows - Microsoft Support](https://support.microsoft.com/en-us/topic/microsoft-net-framework-4-8-offline-installer-for-windows-9d23f658-3b97-68ab-d013-aa3c3e7495e0 )
+
+
 ## 🍔 插件的使用 - 快速开始
 
 启动 Fiddler，将看到 `HTTP 敏感信息检测` 标签。
